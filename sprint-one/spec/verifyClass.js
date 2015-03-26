@@ -1,6 +1,5 @@
 define(['../../lib/chai/chai.js', '../../lib/underscore/underscore.js'], function(chai){
   var expect = chai.expect;
-
   return function(constructor){
     return {followsPattern: function(pattern, options, prototypeOfInstances){
       var patternIs = function(){
@@ -80,15 +79,12 @@ define(['../../lib/chai/chai.js', '../../lib/underscore/underscore.js'], functio
 
       describe(pattern + ' instantiation style', function(){
         var instance;
-
         beforeEach(function(){
           instance = instantiate()
         });
-
         it('makes new instances that delegate to appropriate prototype object', function(){
           expect(prototypeOfInstances.isPrototypeOf(instance)).to.be.true;
         });
-
         var constructorPrototypeProto = option('constructorPrototypeProto');
         if(constructorPrototypeProto){
           it('makes the constructor\'s .prototype property delegate to the appropriate prototype object', function(){
@@ -114,7 +110,7 @@ define(['../../lib/chai/chai.js', '../../lib/underscore/underscore.js'], functio
 
         var referencesThis = requireOption('referencesThis');
         it(might('reference the keyword this', referencesThis), function(){
-          assuming(referencesThis).expect(/^((?!\/\/).)*(this)/.test(constructor)).to.be.true;
+          assuming(referencesThis).expect(/[^\/\*.\*\/](\n\s*this\.)/g.test(constructor)).to.be.true;
         });
 
         var referencesReturn = requireOption('referencesReturn');
