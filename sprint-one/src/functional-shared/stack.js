@@ -1,6 +1,6 @@
 var Stack = function() {
   var object = {
-    size: 0,
+    counter: 0,
     storage: {}
   };
   _.extend(object, stackMethods);
@@ -11,19 +11,19 @@ var Stack = function() {
 
 var stackMethods = {
   pop: function() {
-    if (this.size) {
-      this.size -= 1;
+    if (this.counter) {
+      this.counter -= 1;
     }
-    var currentSize = this.storage[this.size]
-    delete this.storage[this.size];
+    var currentSize = this.storage[this.counter]
+    delete this.storage[this.counter];
     return currentSize;
   },
   push: function(value) {
-    this.storage[this.size] = value;
-    this.size += 1;
+    this.storage[this.counter] = value;
+    this.counter += 1;
   },
   size: function() {
-    return this.size;
+    return this.counter;
   }
 };
 
