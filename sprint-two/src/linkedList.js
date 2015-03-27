@@ -23,16 +23,29 @@ var LinkedList = function(){
   };
 
   list.contains = function(target){
-    var containsRecursive = function(node, target) {
-      if (node.value === target) {
+    var node = list.head;
+    var loop = true;
+    while (loop) {  
+      if (node.value === target){
         return true;
       }
-      if (node === list.tail) {
-        return false;
-      }
-      return containsRecursive(node.next, target);
+      if (node !== list.tail) {
+        node = node.next;  
+      } else {
+        loop = false;
+      }      
     }
-    return containsRecursive(list.head, target);
+    return false;
+    // var containsRecursive = function(node, target) {
+    //   if (node.value === target) {
+    //     return true;
+    //   }
+    //   if (node === list.tail) {
+    //     return false;
+    //   }
+    //   return containsRecursive(node.next, target);
+    // }
+    // return containsRecursive(list.head, target);
   };
 
   return list;
