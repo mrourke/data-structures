@@ -18,11 +18,14 @@ var LimitedArray = function(limit){
   
   limitedArray.get = function(index, k){
     checkLimit(index);
-    return storage[index][k];
+    if (storage[index].hasOwnProperty(k)) {
+      return storage[index][k];
+    }
+    return null;
   };
   limitedArray.set = function(index, value, k){
     checkLimit(index);
-    if (storage[index] === null) {
+    if (storage[index] === undefined) {
       storage[index] = {};
     }
     storage[index][k] = value;
