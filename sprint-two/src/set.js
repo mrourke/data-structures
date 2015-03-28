@@ -22,7 +22,14 @@ setPrototype.contains = function(item){
 };
 
 setPrototype.remove = function(item){
-  
+  for (var i = 0; i < this._storage.length; i++) {
+    if (this._storage[i] === item) {
+      var temp = [];
+      temp = this._storage.slice(0, i).concat(this._storage.slice(i+1,this._storage.length-1));
+      this._storage = temp;
+      return undefined;
+    }
+  }
 };
 
 /*
